@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Deep automotive night palette: dark, low glare -->
+    <color name="background">#0A0E13</color>
+    <color name="surface">#131922</color>
+    <color name="surface_variant">#1B2330</color>
+    <color name="divider">#232D3B</color>
+    <color name="text_primary">#F5F7FA</color>
+    <color name="text_secondary">#8FA0B3</color>
+    <color name="accent">#60A5FA</color>
+    <color name="accent_soft">#1E3A5F</color>
+    <color name="text_on_accent">#0A0E13</color>
+    <color name="chip_bg">#1C2430</color>
+    <color name="map_bg">#14181F</color>
+    <color name="map_road">#2C3542</color>
+    <color name="map_road_minor">#1F2630</color>
+    <color name="gps_ok">#4ADE80</color>
+    <color name="gps_bad">#F87171</color>
+</resources>

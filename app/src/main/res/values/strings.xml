@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Car Launcher</string>
+
+    <!-- Radio -->
+    <string name="radio_no_rds">No RDS</string>
+    <string name="radio_seeking">SEEK…</string>
+    <string name="radio_saved_preset">Preset saved</string>
+    <string name="radio_native_not_found">Native radio app not found</string>
+
+    <!-- Projection -->
+    <string name="projection_ready">Ready</string>
+    <string name="projection_none">No projection app</string>
+    <string name="projection_tap_connect">Tap to connect</string>
+    <string name="projection_open_bt">Open Bluetooth</string>
+
+    <!-- Quick launch -->
+    <string name="nav_default">Navigation</string>
+    <string name="music_default">Music</string>
+    <string name="nav_pick_title">Choose navigation app</string>
+    <string name="music_pick_title">Choose music app</string>
+
+    <!-- System dock -->
+    <string name="theme_label">Theme</string>
+    <string name="settings_label">Settings</string>
+    <string name="updates_label">Updates</string>
+    <string name="settings_failed">Cannot open settings</string>
+
+    <!-- Drawer & dock -->
+    <string name="all_apps">All Apps</string>
+    <string name="search_hint">Search apps</string>
+    <string name="dock_pick_app">Choose an app</string>
+    <string name="dock_replace">Replace</string>
+    <string name="dock_remove">Remove</string>
+    <string name="dock_full">Dock is full</string>
+    <string name="dock_pinned">Pinned to dock</string>
+    <string name="dock_already_pinned">Already pinned</string>
+    <string name="no_apps">No apps found</string>
+
+    <!-- Updates -->
+    <string name="update_checking">Checking for updates…</string>
+    <string name="update_up_to_date">You are up to date</string>
+    <string name="update_available_title">Update available: v%1$s</string>
+    <string name="update_download">Download</string>
+    <string name="update_downloading">Downloading update…</string>
+    <string name="update_check_failed">Update check failed</string>
+
+    <!-- Search -->
+    <string name="search_title">Search address</string>
+    <string name="search_go">Go</string>
+    <string name="search_no_app">No map application available</string>
+
+    <!-- Clock -->
+    <string name="clock_no_alarm_app">No clock application available</string>
+</resources>
