@@ -7,7 +7,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.Uri
 import android.os.Environment
-import android.widget.ProgressDialog
+import android.app.ProgressDialog
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.carlauncher.BuildConfig
