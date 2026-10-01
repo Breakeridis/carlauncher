@@ -73,19 +73,45 @@ commands that differ per firmware build.
 
 ## OTA updates
 
-`UpdateManager` expects a JSON manifest at the URL in `UpdateManager.UPDATE_URL`:
+The in-app updater uses this repository's GitHub **latest release** as the
+update source (`https://api.github.com/repos/Breakeridis/carlauncher/releases/latest`):
+it compares the release tag (e.g. `v0.2`) with the installed `versionName`,
+downloads the attached APK via the system DownloadManager and starts the
+package installer. No extra hosting is required.
 
-```json
-{
-  "versionCode": 2,
-  "versionName": "1.1.0",
-  "apkUrl": "https://yourserver/carlauncher-1.1.0.apk",
-  "changelog": "Changelog text"
-}
+Publishing an update:
+
+```
+git tag v0.2
+git push origin v0.2
 ```
 
-Download uses the system DownloadManager; installation is triggered through the
-standard package installer (allow "install unknown apps" once on the unit).
+CI then builds a **signed release APK** with the permanent release keystore
+(stored as repository secrets) and attaches it to the new GitHub release.
+All release APKs are signed with the same key, so in-app updates never hit
+the signature-mismatch installer error (-7 `INSTALL_FAILED_UPDATE_INCOMPATIBLE`).
+
+**Important:** install only release APKs on the head unit. Debug APKs (CI
+artifacts) are signed with an ephemeral debug key and cannot be updated in
+place later — if one is installed, uninstall it before installing a release.
+
+## Signing
+
+Release signing uses one permanent keystore:
+
+- **CI**: repository secrets `KEYSTORE_BASE64`, `KEYSTORE_PASSWORD`,
+  `KEY_ALIAS`, `KEY_PASSWORD`.
+- **Local**: `keystore.properties` next to `settings.gradle.kts` (gitignored):
+
+```properties
+storeFile=release.keystore
+storePassword=...
+keyAlias=carlauncher
+keyPassword=...
+```
+
+Keep the keystore and passwords safe — if they are lost, the next release
+cannot update the installed app and a full reinstall is required.
 
 ## Map engine
 
