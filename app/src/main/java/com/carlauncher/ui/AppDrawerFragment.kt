@@ -1,7 +1,6 @@
 package com.carlauncher.ui
 
 import android.os.Bundle
-import android.view.GestureDetector
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -28,22 +27,8 @@ class AppDrawerFragment : DialogFragment() {
 
     private lateinit var prefs: AppPrefs
 
-    private val gestureDetector by lazy {
-        GestureDetector(requireContext(), object : GestureDetector.SimpleOnGestureListener() {
-            override fun onFling(
-                e1: MotionEvent?,
-                e2: MotionEvent?,
-                velocityX: Float,
-                velocityY: Float,
-            ): Boolean {
-                if (velocityY > 1500f) {
-                    dismiss()
-                    return true
-                }
-                return false
-            }
-        })
-    }
+    private var touchDownY = 0f
+    private var touchDownTime = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,7 +62,20 @@ class AppDrawerFragment : DialogFragment() {
 
         binding.searchInput.doAfterTextChanged { adapter.filter(it?.toString().orEmpty()) }
         binding.closeButton.setOnClickListener { dismiss() }
-        binding.drawerRoot.setOnTouchListener { _, event -> gestureDetector.onTouchEvent(event) }
+        binding.drawerRoot.setOnTouchListener { _, event ->
+            when (event.actionMasked) {
+                MotionEvent.ACTION_DOWN -> {
+                    touchDownY = event.rawY
+                    touchDownTime = System.currentTimeMillis()
+                }
+                MotionEvent.ACTION_UP -> {
+                    val dy = touchDownY - event.rawY
+                    val dt = System.currentTimeMillis() - touchDownTime
+                    if (dy > 150f * resources.displayMetrics.density && dt < 300L) dismiss()
+                }
+            }
+            false
+        }
     }
 
     private fun pinToDock(entry: AppEntry) {
